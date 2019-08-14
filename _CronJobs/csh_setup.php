@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 //CS (Remote Database)
 
 $i=0;
-$mfdv_clear_csh = "TRUNCATE TABLE `cs_banks_history`;";
+$mfdv_clear_csh = "TRUNCATE TABLE `ranks_economy`;";
 mysqli_query($mfdv_link, $mfdv_clear_csh);
 
 
