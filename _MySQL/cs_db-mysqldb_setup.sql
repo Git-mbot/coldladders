@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 14, 2019 at 08:08 AM
+-- Generation Time: Sep 06, 2019 at 02:38 PM
 -- Server version: 5.7.26-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.5
 
@@ -66,6 +66,22 @@ CREATE TABLE `cs_elo_primary` (
   `elo` int(11) NOT NULL,
   `kills` int(11) NOT NULL,
   `deaths` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cs_elo_seasons`
+--
+
+CREATE TABLE `cs_elo_seasons` (
+  `steam_id` varchar(32) NOT NULL,
+  `name` text,
+  `elo` int(11) NOT NULL,
+  `kills` int(11) NOT NULL,
+  `deaths` int(11) NOT NULL,
+  `season` int(1) NOT NULL,
+  `rank` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
