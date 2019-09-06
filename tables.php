@@ -384,4 +384,63 @@ while($mfdv_row = mysqli_fetch_array($mfdvq_items)){
 //End of While Loop & PHP for table.
 }
 }
+
+
+
+function tableSeason($mfdvq_eloseason){
+ 								
+	$rank=0;
+	while($mfdv_row = mysqli_fetch_array($mfdvq_eloseason)){
+		//Rank
+		$rank++;
+		//Calculate the users Kill Death Ratio.
+		$kdr = number_format($mfdv_row['kills']/$mfdv_row['deaths'],2);
+		$elo = number_format($mfdv_row['elo']);
+		$kills = number_format($mfdv_row['kills']);
+		$deaths = number_format($mfdv_row['deaths']);
+			echo "<tr>\n";			
+			echo "<td>\n"; 
+	
+			// GOLD / SILVER / BRONZE Stars for Top 3
+			if($rank == 1){
+				echo "<a style='color:#ffc942;font-size:18px;'>★";
+			} else if ($rank == 2){
+				echo "<a style='color:silver;font-size:18px;'>★";
+			}else if ($rank == 3){
+				echo "<a style='color:#603819;font-size:18px;'>★";
+			}
+			
+			//Ranking
+			echo "</a>". $rank .".</td>\n";
+	
+			//Output the players name, or unknown if none is found.
+			if($mfdv_row['name'] == 'username'){
+				echo "<td><span style='color:red;'>Name Unknown</span></td>\n";
+			}else{
+				echo "<td> ". $mfdv_row['name'] ."</td>\n";
+			}
+	
+			//Convert the SteamID from 32 to 64 for Steam URL.
+			$url=toCommunityID($mfdv_row['steam_id']);	
+			//Print ID32 with href Profile URL / ID64
+			echo "<td style='color: #424242;'><a  href='http://www.steamcommunity.com/profiles/". $url ."' target='_blank'>". $mfdv_row['steam_id'] ."</a></td>\n";
+			
+			echo "<td>". $elo ."</td>\n";
+			echo "<td>". $kills ."</td>\n";
+			echo "<td>". $deaths ."</td>\n";
+	
+			//Kill Death Ratio
+			echo "<td>". $kdr ." </td>\n";
+	
+			echo "</tr>\n\n";
+	
+			//Breakout at 25 listed users
+			if($rank >= 25){ 
+			break; 
+			}
+	
+	//End of While Loop & PHP for table.
+	}
+		
+}
 ?>

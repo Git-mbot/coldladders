@@ -149,6 +149,11 @@ while($mfdv_row = mysqli_fetch_array($mfdvq_items_top)){
 	break;
 }
 mysqli_data_seek( $mfdvq_items_top, 0 );
+
+
+//Elo Season
+$mfdv_eloseason = "SELECT * FROM `cs_elo_seasons` WHERE `season`='0' ORDER BY `elo` DESC LIMIT 25";
+$mfdvq_eloseason = mysqli_query($mfdv_link, $mfdv_eloseason);
 ?>
 
 <div id="loader"></div>
@@ -177,6 +182,9 @@ mysqli_data_seek( $mfdvq_items_top, 0 );
 
 <div id="wrapper3">
 	<div id="portfolio" class="container">
+	<div class="title">
+		<p style="color: #f0f0f0;">Looking for a new Steam profile picture? Check out <a target="_blank" href="http://www.avatararchive.ca/" style="color: #64cc50;text-decoration: none;">AvatarArchive.ca</a></p>
+	</div>
 		<div class="title">
 			<h2>Ladder Leaders</h2>
 		</div>
@@ -274,7 +282,6 @@ input[type=submit] {
 }
 
 #wrapper3 .theform p {
-	padding: 1em 2em 1em 1em;
 	text-align: center;
 	font-size: 1.5em;
 	color: rgba(91, 217, 255, 0.8);
@@ -288,6 +295,7 @@ input[type=submit] {
 	<div id="portfolio" class="container">
 		<div class="title">
 			<h2>What is my rank?</h2>
+			<h3>Find out your economy rank!</h3>
 		</div>
 		<div class="theform">
 			<form action="index.php">
@@ -312,8 +320,7 @@ input[type=submit] {
 				echo "<p>SteamID not found or input invalid.</p>\n";
 			}else{
 				$bank = number_format($getrank['bank']);
-				echo "<br><h3>".$getrank['name']."</h3>\n";
-				echo "<p>Economy Rank: ".$getrank['rank']. " with $".$bank."</p>\n";
+				echo "<p>User Found: ".$getrank['name'].", rank #".$getrank['rank']. " with $".$bank." banked.</p>\n";
 			}
 		}
 		?>
@@ -321,6 +328,41 @@ input[type=submit] {
 	</div>
 </div>
 
+
+<div id="wrapper3">
+<div id="portfolio" class="container">
+		<div class="title">
+			<h2>Combat Season 0</h2>
+			<h3>Final Standings Top 25</h3>
+		</div>
+	</div>
+	<div class="container">
+		<div class="table-wrapper">
+				<table cellspacing="0" class="xtable" style="width:100%;margin: 0px auto;font-size:16px;">
+					<thead>
+						<tr>
+							<th><b>Rank</b></th>
+							<th><b>Name</b></th>
+							<th><b>SteamID</b></th>
+							<th><b>Elo</b></th>
+							<th><b>Kills</b></th>
+							<th><b>Deaths</b></th>
+							<th><b>K/D Ratio</b></th>
+						</tr>
+					</thead>
+
+						<tbody>
+				
+							<?php
+							tableSeason($mfdvq_eloseason);
+							?>
+
+						</tbody>
+
+				</table>
+		</div>
+	</div>
+</div>
 
 <div id="EcoMod" class="modal">
 	<div class="modal-content">
