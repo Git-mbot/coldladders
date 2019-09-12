@@ -17,6 +17,7 @@
 
 <body onload="loader()" style="margin:0;">
 
+
 <?php 
 require ('csb_c.php');
 require ('tables.php'); 
@@ -182,9 +183,6 @@ $mfdvq_eloseason = mysqli_query($mfdv_link, $mfdv_eloseason);
 
 <div id="wrapper3">
 	<div id="portfolio" class="container">
-	<div class="title">
-		<p style="color: #f0f0f0;">Looking for a new Steam profile picture? Check out <a target="_blank" href="http://www.avatararchive.ca/" style="color: #64cc50;text-decoration: none;">AvatarArchive.ca</a></p>
-	</div>
 		<div class="title">
 			<h2>Ladder Leaders</h2>
 		</div>
